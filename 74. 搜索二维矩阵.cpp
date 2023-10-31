@@ -21,3 +21,51 @@ public:
         return false;
     }
 };
+
+
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int row=matrix.size();
+        int list=matrix[0].size();
+
+        int up=0;
+        int down=row-1;
+        while(up<down)
+        {
+            int mid=up+(down-up)/2;
+            if(matrix[mid][list-1]<target)
+            {
+                up=mid+1;
+            }
+            else
+            {
+                down=mid;
+            }
+        }
+
+        int left=0;
+        int right=list-1;
+        while(left<right)
+        {
+            int mid=left+(right-left)/2;
+            if(matrix[up][mid]<target)
+            {
+                left=mid+1;
+            }
+            else
+            {
+                right=mid;
+            }
+        }
+
+        if(matrix[up][left]==target)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+};
